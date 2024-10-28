@@ -1,0 +1,36 @@
+<div class="artisan-list-container">
+  <h2>Liste des artisans</h2>
+
+  <!-- Bouton pour revenir à la liste toute catégorie, si une catégorie est sélectionnée -->
+  <button *ngIf="category" (click)="clearCategory()">
+    Retour à la liste toute catégorie
+  </button>
+
+  <!-- Vérifie s'il y a des artisans disponibles -->
+  <div *ngIf="filteredArtisans && filteredArtisans.length > 0; else noArtisans">
+    <!-- Boucle sur la liste des artisans -->
+    <div
+      *ngFor="let artisan of filteredArtisans"
+      class="artisan-card"
+      (click)="goToArtisanDetail(artisan)"
+    >
+      <!-- Affichage des informations de chaque artisan -->
+      <h3>{{ artisan.name }}</h3>
+      <p>Note : {{ artisan.note }} ★</p>
+      <p>Spécialité : {{ artisan.specialite }}</p>
+      <p>Localisation : {{ artisan.location }}</p>
+
+      <!-- Affichage des étoiles en fonction de la note -->
+      <div class="stars">
+        <span *ngFor="let star of getStars(artisan.note)" class="star">
+          {{ star }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message d'absence d'artisans si aucun n'est trouvé -->
+  <ng-template #noArtisans>
+    <p>Aucun artisan à afficher.</p>
+  </ng-template>
+</div>

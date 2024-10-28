@@ -1,0 +1,14 @@
+.list-group {
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 1000;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: #f1f1f1;
+}

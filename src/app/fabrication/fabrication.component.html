@@ -1,0 +1,14 @@
+<div class="artisan-list-container">
+  <h2>Liste des artisans Fabrication</h2>
+  <div *ngIf="artisans$ | async as artisans; else noArtisans">
+    <div *ngFor="let artisan of artisans" class="artisan-card">
+      <h3>{{ artisan.name }}</h3>
+      <p>Spécialité : {{ artisan.specialty }}</p>
+      <p>Localisation : {{ artisan.location }}</p>
+      <p>Note : {{ artisan.note }} ★</p>
+    </div>
+  </div>
+  <ng-template #noArtisans>
+    <p>Aucun artisan trouvé.</p>
+  </ng-template>
+</div>

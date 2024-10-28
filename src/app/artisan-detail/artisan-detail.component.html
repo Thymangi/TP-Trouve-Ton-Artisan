@@ -1,0 +1,9 @@
+<div *ngIf="artisan" class="artisan-detail-container">
+  <h2>{{ artisan.nom }}</h2>
+  <p><strong>Spécialité :</strong> {{ artisan.specialite }}</p>
+  <p><strong>Localisation :</strong> {{ artisan.localisation }}</p>
+  <div class="stars">
+    <span *ngFor="let star of getStars(artisan.note)" class="star">★</span>
+  </div>
+  <p><strong>Note :</strong> {{ artisan.note }} / 5</p>
+</div>
