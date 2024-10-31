@@ -3,6 +3,8 @@ import { HeaderComponent } from './header/header.component'; // Import standalon
 import { FooterComponent } from './footer/footer.component'; // Import standalone footer
 import { RouterOutlet } from '@angular/router'; // Pour afficher les routes
 import { ArtisanListComponent } from './artisan-list/artisan-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,8 @@ import { ArtisanListComponent } from './artisan-list/artisan-list.component';
   styleUrls: ['./app.component.scss'],
   standalone: true, // Indique que ce composant est standalone
   imports: [
+    HttpClientModule,
+    RouterModule,
     HeaderComponent,
     FooterComponent,
     RouterOutlet,

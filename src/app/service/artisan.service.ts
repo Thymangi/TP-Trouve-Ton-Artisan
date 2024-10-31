@@ -21,7 +21,24 @@ export class ArtisanService {
   getArtisansByCategory(category: string): Observable<Artisan[]> {
     return this.getArtisans().pipe(
       map((artisans: Artisan[]) =>
-        artisans.filter((artisan) => artisan.category === category)
+        artisans.filter(
+          (artisan) => artisan.category.toLowerCase() === category.toLowerCase()
+        )
+      )
+    );
+  }
+
+  // Méthode pour filtrer les artisans par nom, spécialité ou localisation
+  getFilteredArtisans(searchTerm: string): Observable<Artisan[]> {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return this.getArtisans().pipe(
+      map((artisans: Artisan[]) =>
+        artisans.filter(
+          (artisan) =>
+            artisan.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+            artisan.specialty.toLowerCase().includes(lowerCaseSearchTerm) ||
+            artisan.location.toLowerCase().includes(lowerCaseSearchTerm)
+        )
       )
     );
   }

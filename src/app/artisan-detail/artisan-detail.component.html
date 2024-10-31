@@ -1,9 +1,38 @@
-<div *ngIf="artisan" class="artisan-detail-container">
-  <h2>{{ artisan.nom }}</h2>
-  <p><strong>Spécialité :</strong> {{ artisan.specialite }}</p>
-  <p><strong>Localisation :</strong> {{ artisan.localisation }}</p>
-  <div class="stars">
-    <span *ngFor="let star of getStars(artisan.note)" class="star">★</span>
+<div *ngIf="!selectedArtisan; else detailView">
+  <h2>Résultats de la recherche</h2>
+  <div class="artisan-cards">
+    <div
+      *ngFor="let artisan of artisans"
+      class="artisan-card"
+      (click)="selectArtisan(artisan)"
+    >
+      <h3>{{ artisan.name }}</h3>
+      <p>Spécialité : {{ artisan.specialty }}</p>
+      <p>Localisation : {{ artisan.location }}</p>
+    </div>
   </div>
-  <p><strong>Note :</strong> {{ artisan.note }} / 5</p>
 </div>
+
+<ng-template #detailView>
+  <div class="artisan-detail">
+    <h2>{{ selectedArtisan?.name }}</h2>
+    <p>
+      <strong>Note :</strong> {{ selectedArtisan?.note || "Non noté" }}
+      <span class="stars">★</span>
+    </p>
+    <p><strong>Spécialité :</strong> {{ selectedArtisan?.specialty }}</p>
+    <p><strong>Localisation :</strong> {{ selectedArtisan?.location }}</p>
+    <p><strong>A propos :</strong> {{ selectedArtisan?.about }}</p>
+
+    <!-- Formulaire de contact -->
+
+    <!-- Lien vers le site web de l'artisan si disponible -->
+    <p *ngIf="selectedArtisan?.website">
+      <a [href]="selectedArtisan?.website" target="_blank"
+        >Visitez le site web</a
+      >
+    </p>
+
+    <button (click)="resetSelection()">Retour aux résultats</button>
+  </div>
+</ng-template>

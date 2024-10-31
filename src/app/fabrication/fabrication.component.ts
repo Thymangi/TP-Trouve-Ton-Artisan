@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtisanService } from '../service/artisan.service';
 import { Observable } from 'rxjs';
+import { Artisan } from '../service/artisan.model';
 import { RouterModule } from '@angular/router';
 
 @Component({
