@@ -1,4 +1,5 @@
 <div class="artisan-container">
+  <h2>Liste des artisans dans le Batiment</h2>
   <!-- Affichage de la carte en grand si un artisan est sélectionné -->
   <div *ngIf="selectedArtisan" class="artisan-detail">
     <h2>{{ selectedArtisan.name }}</h2>
@@ -22,7 +23,18 @@
       <h3>{{ artisan.name }}</h3>
       <p><strong>Spécialité :</strong> {{ artisan.specialty }}</p>
       <p><strong>Localisation :</strong> {{ artisan.location }}</p>
-      <p><strong>Note :</strong> {{ artisan.note }} ★</p>
+      <div class="rating">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-star': artisan.note >= i + 1,
+              'fa-star-half-o': artisan.note >= i + 0.5 && artisan.note < i + 1,
+              'fa-star-o': artisan.note < i + 0.5
+            }"
+          ></i>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>

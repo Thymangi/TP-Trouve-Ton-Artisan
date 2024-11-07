@@ -3,21 +3,47 @@ import { CommonModule } from '@angular/common';
 import { ArtisanService } from '../service/artisan.service';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { Artisan } from '../service/artisan.model';
+import { ArtisanRatingComponent } from '../ArtisanRatingComponent.js';
 
 @Component({
   selector: 'app-alimentation',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ArtisanRatingComponent],
   templateUrl: './alimentation.component.html',
   styleUrls: ['./alimentation.component.scss'],
 })
 export class AlimentationComponent implements OnInit {
-  artisans$: Observable<any[]> | null = null;
+  artisans: Artisan[] = [];
+  selectedArtisan: Artisan | null = null;
 
   constructor(private artisanService: ArtisanService) {}
 
   ngOnInit(): void {
-    // Filtrer les artisans par catégorie 'Alimentation'
-    this.artisans$ = this.artisanService.getArtisansByCategory('Alimentation');
+    this.artisanService
+      .getArtisansByCategory('Alimentation')
+      .subscribe((data: Artisan[]) => {
+        this.artisans = data;
+      });
+  }
+
+  // Méthode pour sélectionner un artisan et afficher sa carte en grand
+  selectArtisan(artisan: Artisan): void {
+    this.selectedArtisan = artisan;
+  }
+
+  // Méthode pour réinitialiser la sélection d'artisan
+  resetSelection(): void {
+    this.selectedArtisan = null;
+  }
+
+  getStarClass(starIndex: number, note: number): string {
+    if (note >= starIndex) {
+      return 'full-star'; // étoile remplie
+    } else if (note > starIndex - 1 && note < starIndex) {
+      return 'half-star'; // étoile demi-remplie
+    } else {
+      return 'empty-star'; // étoile vide
+    }
   }
 }

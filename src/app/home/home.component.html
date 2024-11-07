@@ -52,15 +52,16 @@
       <p>Spécialité : {{ artisan.specialty }}</p>
       <p>Localisation : {{ artisan.location }}</p>
       <div class="rating">
-        <span *ngFor="let star of [1, 2, 3, 4, 5]">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
           <i
             class="fa"
             [ngClass]="{
-              'fa-star': star <= artisan.note,
-              'fa-star-o': star > artisan.note
+              'fa-star': artisan.note >= i + 1,
+              'fa-star-half-o': artisan.note >= i + 0.5 && artisan.note < i + 1,
+              'fa-star-o': artisan.note < i + 0.5
             }"
           ></i>
-        </span>
+        </ng-container>
       </div>
     </div>
   </div>

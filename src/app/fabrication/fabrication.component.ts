@@ -1,24 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtisanService } from '../service/artisan.service';
-import { Observable } from 'rxjs';
 import { Artisan } from '../service/artisan.model';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-fabrication',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule], // Import du module nécessaire pour le standalone
   templateUrl: './fabrication.component.html',
   styleUrls: ['./fabrication.component.scss'],
 })
 export class FabricationComponent implements OnInit {
-  artisans$: Observable<any[]> | null = null;
+  artisans: Artisan[] = [];
+  selectedArtisan: Artisan | null = null;
 
   constructor(private artisanService: ArtisanService) {}
 
   ngOnInit(): void {
-    // Filtrer les artisans par catégorie 'Fabrication'
-    this.artisans$ = this.artisanService.getArtisansByCategory('Fabrication');
+    this.artisanService
+      .getArtisansByCategory('Fabrication')
+      .subscribe((data: Artisan[]) => {
+        this.artisans = data;
+      });
+  }
+
+  // Méthode pour sélectionner un artisan et afficher sa carte en grand
+  selectArtisan(artisan: Artisan): void {
+    this.selectedArtisan = artisan;
+  }
+
+  // Méthode pour réinitialiser la sélection d'artisan
+  resetSelection(): void {
+    this.selectedArtisan = null;
+  }
+
+  getStarClass(starIndex: number, note: number): string {
+    if (note >= starIndex) {
+      return 'full-star'; // étoile remplie
+    } else if (note > starIndex - 1 && note < starIndex) {
+      return 'half-star'; // étoile demi-remplie
+    } else {
+      return 'empty-star'; // étoile vide
+    }
   }
 }

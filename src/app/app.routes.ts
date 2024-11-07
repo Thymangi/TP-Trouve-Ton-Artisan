@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ArtisanDetailComponent } from './artisan-detail/artisan-detail.component';
 import { ServicesComponent } from './services/services.component';
-import { FabricationComponent } from './fabrication/fabrication.component';
+import { FabricationComponent } from './fabrication/fabrication.component.js';
 import { BatimentComponent } from './batiment/batiment.component.js';
 import { AlimentationComponent } from './alimentation/alimentation.component.js';
 import { NotFoundComponent } from './not-found/not-found.component';

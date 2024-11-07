@@ -53,30 +53,36 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
 
-      h3 {
-        color: #0074c7;
+      .rating .fa {
+        color: #ffd700; /* Jaune doré pour les étoiles */
+        font-size: 1.5em; /* Ajustez la taille des étoiles */
+        margin-right: 2px;
       }
 
-      .rating {
-        font-size: 24px;
-        color: #ffd700; /* Jaune pour les étoiles */
-      }
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 
-      .map-icon {
-        width: 30px;
-        height: 30px;
+        h3 {
+          color: #0074c7;
+        }
+
+        .map-icon {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }
-}
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    .procedure-section,
-    .artisans-section {
-      width: 100%;
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      .procedure-section,
+      .artisans-section {
+        width: 100%;
+      }
     }
   }
 }
