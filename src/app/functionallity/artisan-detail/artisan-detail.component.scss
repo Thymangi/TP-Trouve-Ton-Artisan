@@ -1,0 +1,71 @@
+.artisan-detail-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px; /* Limite la largeur pour un alignement plus propre */
+  margin: 0 auto; /* Centrage du conteneur */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #0074c7;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.artisan-detail-container:hover {
+  transform: scale(1.05);
+}
+
+.artisan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.artisan-header h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.artisan-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.artisan-info p {
+  flex: 1 1 45%; /* Chaque élément prend 45% de la largeur pour deux colonnes */
+  margin: 0;
+}
+
+.stars {
+  font-size: 1.5rem;
+  color: gold;
+}
+
+.star {
+  color: lightgray;
+}
+
+.star.filled {
+  color: gold;
+}
+
+.contact-info {
+  margin-top: 20px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

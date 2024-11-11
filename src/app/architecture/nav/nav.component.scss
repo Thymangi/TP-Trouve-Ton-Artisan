@@ -1,0 +1,56 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-link {
+    display: flex;
+    gap: 20px;
+
+    /* Masquer les liens de navigation sur petits écrans */
+    @media (max-width: 1250px) {
+      display: none;
+    }
+  }
+
+  /* Bouton pour le menu hamburger (affiché seulement sur petits écrans) */
+  .hamburger-menu {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    @media (max-width: 1250px) {
+      display: block;
+    }
+  }
+
+  /* Style du menu mobile */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+
+    &.open {
+      display: flex;
+    }
+
+    a {
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+
+      &:hover {
+        color: #007bff;
+      }
+    }
+  }
+}

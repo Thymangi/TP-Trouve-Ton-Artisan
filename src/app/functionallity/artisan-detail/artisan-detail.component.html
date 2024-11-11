@@ -1,0 +1,23 @@
+<div class="artisan-detail-container">
+  <div *ngIf="artisan" class="artisan-header">
+    <h2>{{ artisan.name }}</h2>
+  </div>
+  <div class="artisan-info">
+    <p><strong>Spécialité :</strong> {{ artisan?.specialty }}</p>
+    <p><strong>Localisation :</strong> {{ artisan?.location }}</p>
+    <p><strong>A propos :</strong> {{ artisan?.about }}</p>
+  </div>
+  <div class="stars">
+    <ng-container *ngFor="let star of generateStars(artisan?.note || 0)">
+      <span class="star" [class.filled]="star <= (artisan?.note || 0)">★</span>
+    </ng-container>
+  </div>
+
+  <div class="contact-info">
+    <p><strong>Email :</strong> {{ artisan?.email }}</p>
+    <p>
+      <strong>Site web :</strong>
+      <a [href]="artisan?.website" target="_blank">{{ artisan?.website }}</a>
+    </p>
+  </div>
+</div>

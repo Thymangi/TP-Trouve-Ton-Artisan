@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <!-- Liens de navigation affichés sur les grands écrans -->
+  <div class="nav-link">
+    <a (click)="navigateToCategory('')">Accueil</a>
+    <a (click)="navigateToCategory('Bâtiment')">Bâtiment</a>
+    <a (click)="navigateToCategory('Services')">Services</a>
+    <a (click)="navigateToCategory('Fabrication')">Fabrication</a>
+    <a (click)="navigateToCategory('Alimentation')">Alimentation</a>
+  </div>
+
+  <!-- Bouton pour le menu hamburger (petits écrans) -->
+  <button class="hamburger-menu" (click)="toggleMobileMenu()">☰</button>
+
+  <!-- Menu mobile -->
+  <div *ngIf="isMobileMenuOpen" class="mobile-menu">
+    <a (click)="navigateToCategory(''); toggleMobileMenu()">Accueil</a>
+    <a (click)="navigateToCategory('Bâtiment'); toggleMobileMenu()">Bâtiment</a>
+    <a (click)="navigateToCategory('Services'); toggleMobileMenu()">Services</a>
+    <a (click)="navigateToCategory('Fabrication'); toggleMobileMenu()"
+      >Fabrication</a
+    >
+    <a (click)="navigateToCategory('Alimentation'); toggleMobileMenu()"
+      >Alimentation</a
+    >
+  </div>
+</nav>
