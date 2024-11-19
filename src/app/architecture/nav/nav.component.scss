@@ -1,56 +1,90 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: white;
 
   .nav-link {
     display: flex;
-    gap: 20px;
-
-    /* Masquer les liens de navigation sur petits écrans */
-    @media (max-width: 1250px) {
-      display: none;
-    }
-  }
-
-  /* Bouton pour le menu hamburger (affiché seulement sur petits écrans) */
-  .hamburger-menu {
-    display: none;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    @media (max-width: 1250px) {
-      display: block;
-    }
-  }
-
-  /* Style du menu mobile */
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 4px;
-    z-index: 1000;
-
-    &.open {
-      display: flex;
-    }
+    gap: 15px;
+    flex-wrap: wrap;
 
     a {
-      padding: 10px;
-      color: #333;
       text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      padding: 10px;
+      background-color: transparent;
 
       &:hover {
         color: #007bff;
+        text-decoration: underline;
       }
+    }
+
+    @media (max-width: 990px) {
+      display: none; /* Cache la navigation classique en dessous de 990px */
+    }
+  }
+
+  .hamburger-menu {
+    display: none; /* Caché par défaut */
+    font-size: 42px; /* Augmente la taille du bouton hamburger */
+    margin: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 990px) {
+      display: block; /* Affiche le bouton hamburger pour les petits écrans */
+    }
+  }
+
+  .mobile-menu {
+    display: none; /* Menu mobile caché par défaut */
+    flex-direction: column;
+    align-items: center; /* Centre les éléments horizontalement */
+    background-color: white; /* Couleur de fond */
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px;
+
+    a {
+      display: block; /* Assure que chaque lien prend une ligne complète */
+      padding: 10px 20px; /* Ajoute de l'espace autour des liens */
+      text-decoration: none;
+      color: black; /* Couleur des mots dans le menu mobile */
+      text-align: center;
+
+      /* Fond ajusté à la longueur des mots */
+      border-radius: 4px;
+      margin-bottom: 10px; /* Espacement entre les mots */
+
+      &:hover {
+        color: #007bff;
+        text-decoration: underline;
+      }
+    }
+
+    &.open {
+      display: flex; /* Affiche le menu mobile */
+    }
+  }
+
+  @media (max-width: 990px) {
+    flex-direction: column; /* Réorganise les éléments du navbar */
+    align-items: center;
+
+    .mobile-menu {
+      display: flex; /* Affiche la disposition flex des mots */
+      width: auto; /* Ajuste la largeur au contenu */
     }
   }
 }

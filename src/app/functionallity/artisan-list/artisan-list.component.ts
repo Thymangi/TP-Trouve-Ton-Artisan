@@ -3,6 +3,7 @@ import { ArtisanService } from '../../architecture/service/artisan.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SearchFilterPipe } from '../../Pipes/searchFilter.pipe';
+import { SeoService } from '../../architecture/service/seo.service.js'; // Import du SeoService
 
 @Component({
   selector: 'app-artisan-list',
@@ -20,7 +21,8 @@ export class ArtisanListComponent implements OnInit {
   constructor(
     private artisanService: ArtisanService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private seoService: SeoService // Injecter le SeoService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class ArtisanListComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.selectedCategory = params['category'] || '';
       this.loadArtisans();
+      this.updateSeo(); // Mettre à jour le SEO
     });
   }
 
@@ -55,5 +58,17 @@ export class ArtisanListComponent implements OnInit {
 
   viewDetails(artisan: any) {
     this.router.navigate(['/artisan', artisan.id]);
+  }
+
+  // Mettre à jour le SEO en fonction de la catégorie sélectionnée
+  updateSeo(): void {
+    const title = this.selectedCategory
+      ? `Liste des artisans - ${this.selectedCategory}`
+      : 'Liste des artisans - Toutes catégories';
+    const description = this.selectedCategory
+      ? `Découvrez notre liste d'artisans spécialisés dans le secteur ${this.selectedCategory}.`
+      : 'Découvrez notre liste complète d’artisans qualifiés dans diverses catégories.';
+
+    this.seoService.updateMeta(title, description);
   }
 }

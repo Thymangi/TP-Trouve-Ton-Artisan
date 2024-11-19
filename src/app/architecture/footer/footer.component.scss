@@ -1,33 +1,98 @@
 footer {
-  background-color: #0074c7; /* La couleur de fond bleu */
-  color: white;
+  background-color: #0074c7; /* Bleu de fond */
+  color: #ffffff;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  h5 {
-    color: #f1f8fc;
-    font-weight: bold;
-  }
-
-  address {
-    color: #f1f8fc;
-    font-style: normal;
-  }
-
-  .text-white {
-    color: #f1f8fc;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .container {
+  .footer-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
   }
 
-  .contact-section {
+  .footer-logo {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centre le contenu horizontalement */
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center; /* Centre le texte dans les petits écrans */
+  }
+
+  .footer-contacts {
+    flex: 2;
+    display: flex;
+    justify-content: center; /* Centre les contacts horizontalement */
     text-align: center;
+  }
+
+  .footer-contact {
+    margin-top: 10px;
+  }
+
+  .footer-contact h5 {
+    color: #ffffff;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .footer-contact address,
+  .footer-contact p {
+    color: #f1f8fc;
+    font-style: normal;
+    margin: 5px 0;
+  }
+
+  .footer-contact a {
+    color: #f1f8fc;
+    text-decoration: none;
+  }
+
+  .footer-contact a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-links {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #e0f8fc;
+    border-top: 1px solid #f1f8fc;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .footer-links a {
+    color: #e0f8fc;
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive: en dessous de 630px */
+  @media (max-width: 630px) {
+    .footer-top {
+      flex-direction: column; /* Place les éléments l'un sous l'autre */
+      align-items: center; /* Centre les éléments */
+      text-align: center; /* Centre le texte */
+    }
+
+    .footer-logo {
+      margin-bottom: 15px; /* Ajoute un espacement entre le logo et les contacts */
+    }
+
+    .footer-contacts {
+      flex-direction: column; /* Les contacts deviennent empilés verticalement */
+    }
   }
 }

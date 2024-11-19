@@ -1,5 +1,5 @@
 <header class="bg-white shadow-sm">
-  <!-- Logo et lien vers la page d'accueil -->
+  <!-- Logo -->
   <div class="logo-container">
     <a routerLink="/">
       <img
@@ -10,7 +10,7 @@
     </a>
   </div>
 
-  <!-- Barre de recherche au centre -->
+  <!-- Barre de recherche -->
   <div class="search-container" (mouseleave)="hideDropdown()">
     <input
       type="text"
@@ -34,6 +34,8 @@
     </ul>
   </div>
 
-  <!-- Barre de navigation importée sous forme de composant -->
-  <app-nav></app-nav>
+  <!-- Barre de navigation -->
+  <div class="nav-container">
+    <app-nav></app-nav>
+  </div>
 </header>

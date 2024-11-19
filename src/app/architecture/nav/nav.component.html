@@ -1,25 +1,35 @@
-<nav class="navbar">
-  <!-- Liens de navigation affichés sur les grands écrans -->
-  <div class="nav-link">
-    <a (click)="navigateToCategory('')">Accueil</a>
+<nav class="navbar" (mouseleave)="closeMobileMenu()">
+  <!-- Navigation classique (grands écrans) -->
+  <div class="nav-link" *ngIf="!isMobileMenuOpen">
+    <a (click)="navigateToHome()">Accueil</a>
     <a (click)="navigateToCategory('Bâtiment')">Bâtiment</a>
     <a (click)="navigateToCategory('Services')">Services</a>
     <a (click)="navigateToCategory('Fabrication')">Fabrication</a>
     <a (click)="navigateToCategory('Alimentation')">Alimentation</a>
   </div>
 
-  <!-- Bouton pour le menu hamburger (petits écrans) -->
-  <button class="hamburger-menu" (click)="toggleMobileMenu()">☰</button>
+  <!-- Bouton menu hamburger (petits écrans) -->
+  <button
+    class="hamburger-menu"
+    *ngIf="isSmallScreen"
+    (click)="toggleMobileMenu()"
+  >
+    ☰
+  </button>
 
   <!-- Menu mobile -->
-  <div *ngIf="isMobileMenuOpen" class="mobile-menu">
-    <a (click)="navigateToCategory(''); toggleMobileMenu()">Accueil</a>
-    <a (click)="navigateToCategory('Bâtiment'); toggleMobileMenu()">Bâtiment</a>
-    <a (click)="navigateToCategory('Services'); toggleMobileMenu()">Services</a>
-    <a (click)="navigateToCategory('Fabrication'); toggleMobileMenu()"
+  <div
+    class="mobile-menu"
+    *ngIf="isMobileMenuOpen"
+    (mouseleave)="closeMobileMenu()"
+  >
+    <a (click)="navigateToHome(); closeMobileMenu()">Accueil</a>
+    <a (click)="navigateToCategory('Bâtiment'); closeMobileMenu()">Bâtiment</a>
+    <a (click)="navigateToCategory('Services'); closeMobileMenu()">Services</a>
+    <a (click)="navigateToCategory('Fabrication'); closeMobileMenu()"
       >Fabrication</a
     >
-    <a (click)="navigateToCategory('Alimentation'); toggleMobileMenu()"
+    <a (click)="navigateToCategory('Alimentation'); closeMobileMenu()"
       >Alimentation</a
     >
   </div>

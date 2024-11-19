@@ -1,0 +1,20 @@
+.liens-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh; /* Ajustez la hauteur pour que ce soit plus compact */
+  text-align: center;
+  padding: 10px; /* Réduire le padding */
+  margin: 0; /* Supprimer les marges */
+}
+
+.liens-footer h1 {
+  font-size: 1.8rem; /* Réduire la taille du texte si nécessaire */
+  margin-bottom: 10px; /* Réduire l'espace sous le titre */
+}
+
+.liens-footer p {
+  font-size: 1rem; /* Taille de police normale pour le paragraphe */
+  margin: 0; /* Pas d'espace autour du texte */
+}

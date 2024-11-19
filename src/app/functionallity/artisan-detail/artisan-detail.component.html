@@ -20,4 +20,49 @@
       <a [href]="artisan?.website" target="_blank">{{ artisan?.website }}</a>
     </p>
   </div>
+
+  <!-- Formulaire de contact -->
+  <h3>Contactez cet artisan</h3>
+  <form (ngSubmit)="sendContactForm()" [formGroup]="contactForm">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        placeholder="Votre nom"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Objet</label>
+      <input
+        type="text"
+        id="subject"
+        formControlName="subject"
+        class="form-control"
+        placeholder="Objet du message"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        formControlName="message"
+        class="form-control"
+        rows="5"
+        placeholder="Votre message"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!contactForm.valid"
+    >
+      Envoyer
+    </button>
+  </form>
 </div>

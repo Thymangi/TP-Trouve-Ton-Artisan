@@ -1,29 +1,41 @@
-<footer class="bg-primary text-white py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h5>Contact Lyon</h5>
+<footer>
+  <div class="footer-top">
+    <!-- Section Logo et Texte -->
+    <div class="footer-logo">
+      <div>
+        <div>La Région</div>
+        <div>Auvergne-Rhône-Alpes</div>
+        <div>Conseil régional</div>
+      </div>
+    </div>
+
+    <!-- Section Contacts -->
+    <div class="footer-contacts">
+      <div class="footer-contact">
+        <h5>Lyon</h5>
         <address>
           101 cours Charlemagne<br />
           CS 20033<br />
           69269 LYON CEDEX 02<br />
-          +33 (0)4 26 73 40 00
+          France
         </address>
-      </div>
-      <div class="col-md-6">
-        <h5>Contact Clermont-Ferrand</h5>
-        <address>
-          50 boulevard du Jouhaux<br />
-          CS 20033<br />
-          63000 CLERMONT-FERRAND<br />
-          +33 (0)4 26 73 40 00
-        </address>
+        <p>Ouvert du lundi au vendredi de 8h15 à 17h</p>
+        <p>📞 +33 (0)4 26 73 40 00</p>
       </div>
     </div>
-    <div class="text-center mt-4">
-      <a href="#" class="text-white">Mentions légales</a> |
-      <a href="#" class="text-white">Accessibilité</a> |
-      <a href="#" class="text-white">Plan du site</a>
-    </div>
+  </div>
+
+  <!-- Liens en bas -->
+  <div class="footer-links">
+    <a [routerLink]="['/legal-page']">Mentions légales</a>
+    <a [routerLink]="['/donnees-personnelles']">Données personnelles</a>
+    <a [routerLink]="['/accessibilite']"
+      >Accessibilité : partiellement conforme</a
+    >
+    <a [routerLink]="['/presse']">Presse</a>
+    <a [routerLink]="['/marches-publics']">Marchés publics</a>
+    <a [routerLink]="['/venir-a-la-region']">Venir à la Région</a>
+    <a [routerLink]="['/contacts']">Contacts</a>
+    <a [routerLink]="['/gestion-des-cookies']">Gestion des cookies</a>
   </div>
 </footer>

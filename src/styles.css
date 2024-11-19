@@ -17,6 +17,7 @@ app-root {
 
 .container {
   flex: 1; /* Permet au contenu principal de prendre tout l'espace restant */
+  width: 100%;
 }
 
 app-footer {

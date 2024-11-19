@@ -1,43 +1,57 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background-color: white;
+  padding: 10px;
+  padding-bottom: 0px;
 
   .logo-container {
-    flex: 1; // Prend 1/4 de l'espace
+    flex: 1;
+    max-width: 33.33%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin: 5px;
 
     a {
       display: inline-flex;
-      transition: transform 0.3s, box-shadow 0.3s;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-      }
 
       .logo {
-        max-width: 100%;
+        max-width: 300px; /* Augmente la taille maximale du logo */
         height: auto;
+
+        @media (max-width: 758px) {
+          max-width: 300px; /* Taille réduite pour petit écran */
+        }
+
+        @media (max-width: 500px) {
+          max-width: 200px; /* Encore plus réduit pour les écrans très petits */
+        }
       }
     }
   }
 
   .search-container {
-    flex: 1; // Prend 1/4 de l'espace
+    flex: 1;
+    max-width: 33.33%;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
+    margin: 5px;
 
     .search-input {
       width: 100%;
       max-width: 400px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
     }
+
     .suggestion-list {
       position: absolute;
-      top: 100%; /* Position sous l'input */
+      top: 100%;
       left: 0;
       right: 0;
       background-color: white;
@@ -46,26 +60,41 @@ header {
       max-height: 200px;
       overflow-y: auto;
       z-index: 1000;
-    }
 
-    .suggestion-list li {
-      padding: 10px;
-      cursor: pointer;
-    }
+      li {
+        padding: 10px;
+        cursor: pointer;
 
-    .suggestion-list li:hover {
-      background-color: #f0f0f0;
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
     }
   }
 
-  app-nav {
-    flex: 1; // Prend 2/4 ou la moitié de l'espace
+  .nav-container {
+    flex: 1;
+    max-width: 33.33%;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
   }
 
-  /* Styles pour écran mobile */
-  @media (max-width: 768px) {
-    app-nav {
-      display: none;
+  /* Responsive pour les écrans inférieurs à 990px */
+  @media (max-width: 758px) {
+    flex-direction: column; /* Les éléments se placent les uns sous les autres */
+    align-items: center;
+
+    .logo-container,
+    .search-container,
+    .nav-container {
+      max-width: 100%; /* Chaque section prend toute la largeur */
+      justify-content: center;
+    }
+
+    .search-container {
+      margin-top: 10px;
+      width: 100%;
     }
   }
 }

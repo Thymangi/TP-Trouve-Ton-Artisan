@@ -1,68 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from '../../architecture/service/search.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nav',
-  template: `
-    <nav class="navbar">
-      <!-- Liens de navigation -->
-      <a class="nav-link" (click)="navigateToHome()">Accueil</a>
-      <a class="nav-link" (click)="navigateToCategory('Bâtiment')">Bâtiment</a>
-      <a class="nav-link" (click)="navigateToCategory('Services')">Services</a>
-      <a class="nav-link" (click)="navigateToCategory('Fabrication')"
-        >Fabrication</a
-      >
-      <a class="nav-link" (click)="navigateToCategory('Alimentation')"
-        >Alimentation</a
-      >
-
-      <!-- Bouton pour le menu hamburger (petits écrans) -->
-      <button class="hamburger-menu" (click)="toggleMobileMenu()">☰</button>
-
-      <!-- Menu mobile (affiché seulement sur petits écrans) -->
-      <div class="mobile-menu" *ngIf="isMobileMenuOpen">
-        <a class="nav-link" (click)="navigateToHome()">Accueil</a>
-        <a class="nav-link" (click)="navigateToCategory('Bâtiment')"
-          >Bâtiment</a
-        >
-        <a class="nav-link" (click)="navigateToCategory('Services')"
-          >Services</a
-        >
-        <a class="nav-link" (click)="navigateToCategory('Fabrication')"
-          >Fabrication</a
-        >
-        <a class="nav-link" (click)="navigateToCategory('Alimentation')"
-          >Alimentation</a
-        >
-      </div>
-    </nav>
-  `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
+  templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-  isMobileMenuOpen = false;
+  isMobileMenuOpen = false; // État du menu mobile
+  searchTerm: string = ''; // Déclaration de searchTerm
+  isSmallScreen = false; // État de l'écran pour savoir si on est sur un petit écran
 
   constructor(private searchService: SearchService, private router: Router) {}
 
-  // Navigation vers l'accueil
-  navigateToHome() {
-    this.isMobileMenuOpen = false;
-    this.router.navigate(['/']); // Redirection vers la page d'accueil
+  // Détecte la taille de l'écran pour ajuster dynamiquement isSmallScreen
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isSmallScreen = window.innerWidth <= 990; // Définit si l'écran est petit
+    if (!this.isSmallScreen) {
+      this.closeMobileMenu(); // Ferme le menu mobile si l'écran devient large
+    }
   }
 
-  // Navigation vers une catégorie spécifique avec queryParams
-  navigateToCategory(category: string) {
-    this.isMobileMenuOpen = false;
-    this.router.navigate(['/artisans'], { queryParams: { category } });
+  // Initialisation du composant
+  ngOnInit() {
+    this.isSmallScreen = window.innerWidth <= 990;
   }
 
   // Basculer l'état du menu mobile
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
-    console.log('Hamburger menu toggled', this.isMobileMenuOpen); //  log
+    console.log('Hamburger menu toggled:', this.isMobileMenuOpen);
+  }
+
+  // Fermer le menu mobile explicitement
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
+  }
+
+  // Navigation vers la page d'accueil
+  navigateToHome() {
+    this.closeMobileMenu(); // Ferme le menu mobile après clic
+    this.router.navigate(['/']);
+  }
+
+  // Navigation vers une catégorie
+  navigateToCategory(category: string) {
+    this.closeMobileMenu(); // Ferme le menu mobile après clic
+    this.router.navigate(['/artisans'], { queryParams: { category } });
   }
 }

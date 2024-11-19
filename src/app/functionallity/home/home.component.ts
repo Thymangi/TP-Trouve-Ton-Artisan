@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { ArtisanService } from '../../architecture/service/artisan.service.js';
 import { Artisan } from '../../architecture/service/artisan.model';
+import { SeoService } from '../../architecture/service/seo.service.js'; // Importer le SeoService
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,19 @@ export class HomeComponent implements OnInit {
   artisans: Artisan[] = [];
   topArtisans: Artisan[] = [];
 
-  constructor(private artisanService: ArtisanService, private router: Router) {}
+  constructor(
+    private artisanService: ArtisanService,
+    private router: Router,
+    private seoService: SeoService // Injection du SeoService
+  ) {}
 
   ngOnInit(): void {
+    // Définir les balises SEO spécifiques à la page d'accueil
+    this.seoService.updateMeta(
+      'Trouve Ton Artisan - Meilleurs artisans en Auvergne-Rhône-Alpes',
+      'Trouvez les meilleurs artisans en Auvergne-Rhône-Alpes pour tous vos besoins en bâtiment, services, fabrication, et alimentation.'
+    );
+
     // Charger les artisans depuis le fichier JSON
     this.artisanService.getArtisans().subscribe(
       (data) => {
