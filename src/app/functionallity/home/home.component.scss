@@ -1,31 +1,51 @@
+// Variables SCSS
+$primary-color: #00497c;
+$secondary-color: #0074c7;
+$background-light: #f1f8fc;
+$border-light: #e0e0e0;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$highlight-color: #ffd700;
+
+// Mixin pour les styles réutilisables des cartes
+@mixin card-style {
+  background-color: #ffffff;
+  border: 1px solid $border-light;
+  border-radius: 10px;
+  box-shadow: 0 0 10px $shadow-color;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+// Styles principaux
 .home-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* Permet aux éléments de s'ajuster si nécessaire */
-  margin: 0px auto;
+  margin: 0 auto;
   max-width: 1200px;
 
-  .procedure-section {
-    transition: all 0.3s ease-in-out; /* Ajout d'une transition pour les changements de taille */
+  h1,
+  h2,
+  h3 {
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-    h1 {
-      color: #00497c;
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+  .procedure-section {
+    transition: all 0.3s ease-in-out;
 
     .step {
-      background-color: #f1f8fc;
-      border: 2px solid #0074c7;
+      background-color: $background-light;
+      border: 2px solid $secondary-color;
       border-right-width: 6px;
       border-bottom-width: 6px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 4px 6px $shadow-color;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
       &:hover {
         transform: translateY(-5px);
@@ -33,7 +53,7 @@
       }
 
       h3 {
-        color: #0074c7;
+        color: $secondary-color;
       }
 
       .icon {
@@ -48,28 +68,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.3s ease-in-out; /* Ajout d'une transition pour les changements de taille */
-
-    h2 {
-      color: #00497c;
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-align: center; /* Centrer le texte du titre */
-    }
+    transition: all 0.3s ease-in-out;
 
     .artisan-card {
-      background-color: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
+      @include card-style;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 100%; /* Prend toute la largeur disponible */
+      max-width: 600px;
 
       .rating .fa {
-        color: #ffd700; /* Jaune doré pour les étoiles */
-        font-size: 1.5em; /* Ajustez la taille des étoiles */
+        color: $highlight-color;
+        font-size: 1.5em;
         margin-right: 2px;
       }
 
@@ -78,7 +89,7 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 
         h3 {
-          color: #0074c7;
+          color: $secondary-color;
         }
 
         .map-icon {
@@ -90,67 +101,55 @@
   }
 }
 
-/* Responsive adjustments */
+// Responsive adjustments
 @media (max-width: 768px) {
   .home-container {
-    flex-direction: column; /* Colonne sur petits écrans */
-    align-items: center; /* Centre les éléments */
-    width: 100%; /* Assure que le conteneur prend toute la largeur */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
   .procedure-section,
   .artisans-section {
-    width: 100%; /* Prend toute la largeur disponible */
-    margin: 0px 0; /* Espacement vertical entre les sections */
+    width: 100%;
+    margin: 0 0; /* Espacement vertical entre les sections */
   }
 
-  .procedure-section .step {
-    flex-direction: column; /* Les étapes empilées verticalement */
-    align-items: center; /* Alignement centré sur mobile */
-    text-align: center; /* Centrer les textes */
+  .procedure-section .step,
+  .artisans-section .artisan-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px auto;
+    width: 90%;
   }
 
   .procedure-section .step .icon {
-    margin-top: 10px; /* Espace entre le texte et l'icône */
-    align-self: center; /* Centre les icônes */
+    margin-top: 10px;
   }
 
-  .artisans-section {
-    align-items: center; /* Les cartes sont centrées */
-    display: flex; /* Conserve la flexbox */
-    flex-direction: column; /* Les cartes sont empilées verticalement */
-    width: 100%; /* Prend toute la largeur de l'écran */
-  }
-
-  .artisans-section .artisan-card {
-    margin: 10px auto; /* Centrer les cartes artisans */
-    width: 90%; /* Légère réduction pour des marges */
-    max-width: 600px; /* Limite la largeur des cartes */
-  }
-
-  /* Ajout pour réduire les polices sur mobile */
   h1,
   h2,
   h3 {
-    font-size: 20px; /* Taille de police réduite pour les titres */
+    font-size: 20px;
   }
 
   .artisan-card p {
-    font-size: 16px; /* Réduction de la taille des paragraphes */
+    font-size: 16px;
   }
 }
 
 @media (min-width: 768px) {
   .home-container {
-    flex-direction: row; /* Réorganise les sections en ligne */
-    width: 100%; /* Assure que le conteneur prend toute la largeur */
+    flex-direction: row;
+    width: 100%;
   }
 
   .procedure-section {
-    width: 70%; /* Maintient la largeur des grands écrans */
+    width: 70%;
   }
 
   .artisans-section {
-    width: 30%; /* Ajuste la largeur pour occuper le reste */
+    width: 30%;
   }
 }

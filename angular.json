@@ -37,10 +37,14 @@
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
-            }
+            },
+            "allowedCommonJsDependencies": ["nodemailer"]
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "outputHashing": "all",
               "budgets": [
                 {
                   "type": "initial",
@@ -52,8 +56,7 @@
                   "maximumWarning": "2kB",
                   "maximumError": "4kB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,

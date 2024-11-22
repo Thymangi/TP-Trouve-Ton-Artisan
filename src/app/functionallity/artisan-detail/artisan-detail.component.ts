@@ -16,17 +16,19 @@ import { SeoService } from '../../architecture/service/seo.service.js';
   templateUrl: './artisan-detail.component.html',
   styleUrls: ['./artisan-detail.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // Ajout de ReactiveFormsModule pour les formulaires réactifs
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class ArtisanDetailComponent implements OnInit {
   artisan: Artisan | undefined;
   contactForm!: FormGroup;
+  emailStatus: 'success' | 'error' | null = null;
+  emailMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private artisanService: ArtisanService,
-    private seoService: SeoService // Injecter le SeoService
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -53,28 +55,35 @@ export class ArtisanDetailComponent implements OnInit {
 
     // Initialiser le formulaire de contact
     this.contactForm = this.fb.group({
-      name: ['', [Validators.required]],
-      subject: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      subject: ['', [Validators.required, Validators.minLength(3)]],
       message: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
   generateStars(note: number): number[] {
-    return Array.from({ length: 5 }, (_, i) => i + 1); // Crée un tableau de [1, 2, 3, 4, 5]
+    return Array.from({ length: 5 }, (_, i) => i + 1);
   }
 
   sendContactForm(): void {
     if (this.contactForm.valid) {
-      const formValues = this.contactForm.value;
-      this.artisanService.sendEmailToArtisan(formValues).subscribe(
-        (response) => {
-          console.log('E-mail envoyé avec succès', response);
-          alert('Votre message a été envoyé.');
+      const formData = {
+        name: this.contactForm.value.name,
+        subject: this.contactForm.value.subject,
+        message: this.contactForm.value.message,
+        recipientEmail: this.artisan?.email, // Adresse e-mail de l'artisan
+      };
+
+      this.artisanService.sendEmail(formData).subscribe(
+        () => {
+          this.emailStatus = 'success';
+          this.emailMessage = 'Votre message a été envoyé avec succès.';
           this.contactForm.reset();
         },
-        (error) => {
-          console.error("Erreur lors de l'envoi de l'e-mail", error);
-          alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+        (error: any) => {
+          console.error("Erreur lors de l'envoi de l'email :", error);
+          this.emailStatus = 'error';
+          this.emailMessage = "Une erreur s'est produite. Veuillez réessayer.";
         }
       );
     }

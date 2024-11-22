@@ -64,5 +64,15 @@
     >
       Envoyer
     </button>
+    <div
+      *ngIf="emailStatus"
+      class="alert"
+      [ngClass]="{
+        'alert-success': emailStatus === 'success',
+        'alert-danger': emailStatus === 'error'
+      }"
+    >
+      {{ emailMessage }}
+    </div>
   </form>
 </div>
