@@ -1,0 +1,40 @@
+.artisan-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.category-title {
+  text-align: center;
+  margin-bottom: 50px;
+  color: #00497c;
+}
+
+.artisan-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 3px solid #0074c7;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.stars {
+  font-size: 1.5rem;
+
+  .star {
+    margin-right: 2px;
+    color: lightgray; // Étoiles non remplies
+
+    &.filled {
+      color: gold; // Étoiles remplies
+    }
+  }
+}

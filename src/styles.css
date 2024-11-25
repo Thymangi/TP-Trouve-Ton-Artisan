@@ -1,3 +1,4 @@
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 /* You can add global styles to this file, and also import other style files */
 /* Assurer que la page prend toute la hauteur de la fenêtre */
 html,
@@ -16,7 +17,7 @@ app-root {
 
 .container {
   flex: 1; /* Permet au contenu principal de prendre tout l'espace restant */
-  padding: 20px;
+  width: 100%;
 }
 
 app-footer {

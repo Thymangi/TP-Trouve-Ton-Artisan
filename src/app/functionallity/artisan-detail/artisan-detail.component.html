@@ -1,0 +1,78 @@
+<div class="artisan-detail-container">
+  <div *ngIf="artisan" class="artisan-header">
+    <h2>{{ artisan.name }}</h2>
+  </div>
+  <div class="artisan-info">
+    <p><strong>Spécialité :</strong> {{ artisan?.specialty }}</p>
+    <p><strong>Localisation :</strong> {{ artisan?.location }}</p>
+    <p><strong>A propos :</strong> {{ artisan?.about }}</p>
+  </div>
+  <div class="stars">
+    <ng-container *ngFor="let star of generateStars(artisan?.note || 0)">
+      <span class="star" [class.filled]="star <= (artisan?.note || 0)">★</span>
+    </ng-container>
+  </div>
+
+  <div class="contact-info">
+    <p><strong>Email :</strong> {{ artisan?.email }}</p>
+    <p>
+      <strong>Site web :</strong>
+      <a [href]="artisan?.website" target="_blank">{{ artisan?.website }}</a>
+    </p>
+  </div>
+
+  <!-- Formulaire de contact -->
+  <h3>Contactez cet artisan</h3>
+  <form (ngSubmit)="sendContactForm()" [formGroup]="contactForm">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        placeholder="Votre nom"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Objet</label>
+      <input
+        type="text"
+        id="subject"
+        formControlName="subject"
+        class="form-control"
+        placeholder="Objet du message"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        formControlName="message"
+        class="form-control"
+        rows="5"
+        placeholder="Votre message"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!contactForm.valid"
+    >
+      Envoyer
+    </button>
+    <div
+      *ngIf="emailStatus"
+      class="alert"
+      [ngClass]="{
+        'alert-success': emailStatus === 'success',
+        'alert-danger': emailStatus === 'error'
+      }"
+    >
+      {{ emailMessage }}
+    </div>
+  </form>
+</div>

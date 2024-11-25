@@ -1,0 +1,77 @@
+<div class="home-container">
+  <!-- Section: Comment trouver mon artisan -->
+  <div class="procedure-section">
+    <h1>Comment trouver mon artisan ?</h1>
+
+    <div class="step" id="step-1">
+      <h3>1. Choisir une catégorie d'artisanat</h3>
+      <p>
+        "Commencez votre recherche en sélectionnant une catégorie qui correspond
+        à vos besoins dans le menu. Que vous recherchiez un plombier, un
+        électricien ou un autre professionnel, le menu vous aide à filtrer les
+        artisans en fonction de leur domaine de spécialisation."
+      </p>
+    </div>
+
+    <div class="step" id="step-2">
+      <h3>2. Choisir un artisan</h3>
+      <p>
+        "Une fois votre catégorie sélectionnée, parcourez la liste des artisans
+        disponibles. Consultez leurs fiches pour découvrir leurs compétences,
+        leur localisation et les avis laissés par d'autres clients, afin de
+        faire un choix éclairé."
+      </p>
+    </div>
+
+    <div class="step" id="step-3">
+      <h3>3. Contact via le formulaire</h3>
+      <p>
+        "Pour entrer en contact avec l'artisan choisi, remplissez le formulaire
+        prévu à cet effet. Fournissez des informations précises sur votre
+        demande, comme les détails du projet ou le type d'intervention
+        souhaitée."
+      </p>
+    </div>
+
+    <div class="step" id="step-4">
+      <h3>4. Réponse sous 48h</h3>
+      <p>
+        "Après avoir envoyé votre demande, vous recevrez une réponse dans les 48
+        heures. L'artisan vous contactera pour discuter des détails et organiser
+        une intervention adaptée à vos besoins."
+      </p>
+    </div>
+  </div>
+
+  <!-- Section: Artisans du mois -->
+  <div class="artisans-section">
+    <h2>Artisans du mois</h2>
+
+    <div *ngIf="topArtisans && topArtisans.length === 0">
+      Aucun artisan à afficher.
+    </div>
+    <!-- Message si la liste est vide -->
+
+    <div
+      *ngFor="let artisan of topArtisans"
+      class="artisan-card"
+      (click)="viewArtisanDetail(artisan)"
+    >
+      <h5>{{ artisan.name }}</h5>
+      <p>Spécialité : {{ artisan.specialty }}</p>
+      <p>Localisation : {{ artisan.location }}</p>
+      <div class="rating">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-star': artisan.note >= i + 1,
+              'fa-star-half-o': artisan.note >= i + 0.5 && artisan.note < i + 1,
+              'fa-star-o': artisan.note < i + 0.5
+            }"
+          ></i>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

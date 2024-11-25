@@ -1,0 +1,23 @@
+<div class="category-title" *ngIf="selectedCategory">
+  <h2>Liste des artisans du secteur "{{ selectedCategory }}"</h2>
+</div>
+
+<div class="artisan-list-container">
+  <div
+    *ngFor="let artisan of artisans | searchFilter : searchTerm"
+    class="artisan-card"
+    (click)="viewDetails(artisan)"
+  >
+    <h3>{{ artisan.name }}</h3>
+    <p>Spécialité : {{ artisan.specialty }}</p>
+    <p>Localisation : {{ artisan.location }}</p>
+    <div class="stars">
+      <ng-container *ngFor="let star of generateStars(artisan.note)">
+        <span class="star" [class.filled]="star <= artisan.note">★</span>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<ng-template #noArtisans>
+  <p>Aucun artisan trouvé pour cette catégorie.</p>
+</ng-template>

@@ -1,0 +1,70 @@
+.artisan-detail-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 25px auto 30px; /* Centré avec marges haut et bas */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 3px solid #0074c7;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .artisan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+    }
+  }
+
+  .artisan-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+
+    p {
+      flex: 1 1 45%; /* Deux colonnes équilibrées */
+      margin: 0;
+    }
+  }
+
+  .stars {
+    font-size: 1.5rem;
+    color: gold;
+
+    .star {
+      color: lightgray;
+
+      &.filled {
+        color: gold;
+      }
+    }
+  }
+
+  .contact-info {
+    margin-top: 20px;
+
+    p {
+      margin: 5px 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

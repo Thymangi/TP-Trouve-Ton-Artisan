@@ -1,0 +1,41 @@
+<header class="bg-white shadow-sm">
+  <!-- Logo -->
+  <div class="logo-container">
+    <a routerLink="/">
+      <img
+        src="assets/images/Logo.png"
+        alt="Logo de Trouve Ton Artisan"
+        class="logo"
+      />
+    </a>
+  </div>
+
+  <!-- Barre de recherche -->
+  <div class="search-container" (mouseleave)="hideDropdown()">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Rechercher un artisan..."
+      [(ngModel)]="searchTerm"
+      (input)="filterArtisans()"
+    />
+
+    <!-- Liste déroulante -->
+    <ul
+      class="suggestion-list"
+      *ngIf="filteredArtisans.length > 0 && showDropdown"
+    >
+      <li
+        *ngFor="let artisan of filteredArtisans"
+        (click)="viewArtisanDetail(artisan)"
+      >
+        {{ artisan.name }} - {{ artisan.specialty }} ({{ artisan.location }})
+      </li>
+    </ul>
+  </div>
+
+  <!-- Barre de navigation -->
+  <div class="nav-container">
+    <app-nav></app-nav>
+  </div>
+</header>
