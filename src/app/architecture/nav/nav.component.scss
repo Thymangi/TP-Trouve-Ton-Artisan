@@ -15,7 +15,6 @@
       color: #333;
       font-size: 16px;
       padding: 10px;
-      background-color: transparent;
 
       &:hover {
         color: #007bff;
@@ -24,31 +23,28 @@
     }
 
     @media (max-width: 990px) {
-      display: none; /* Cache la navigation classique en dessous de 990px */
+      display: none; /* Cacher les liens pour les écrans plus petits */
     }
   }
 
   .hamburger-menu {
     display: none; /* Caché par défaut */
-    font-size: 42px; /* Augmente la taille du bouton hamburger */
+    font-size: 42px;
     margin: 10px;
     cursor: pointer;
     background: none;
     border: none;
-    align-items: center;
-    justify-content: center;
 
     @media (max-width: 990px) {
-      display: block; /* Affiche le bouton hamburger pour les petits écrans */
+      display: block; /* Visible uniquement sur les écrans plus petits */
     }
   }
 
   .mobile-menu {
-    display: none; /* Menu mobile caché par défaut */
+    display: none; /* Caché par défaut */
     flex-direction: column;
-    align-items: center; /* Centre les éléments horizontalement */
-    background-color: white; /* Couleur de fond */
-
+    align-items: center;
+    background-color: white;
     position: absolute;
     top: 100%;
     left: 0;
@@ -57,15 +53,13 @@
     padding: 10px;
 
     a {
-      display: block; /* Assure que chaque lien prend une ligne complète */
-      padding: 10px 20px; /* Ajoute de l'espace autour des liens */
+      display: block;
+      padding: 10px 20px;
       text-decoration: none;
-      color: black; /* Couleur des mots dans le menu mobile */
+      color: black;
       text-align: center;
-
-      /* Fond ajusté à la longueur des mots */
       border-radius: 4px;
-      margin-bottom: 10px; /* Espacement entre les mots */
+      margin-bottom: 10px;
 
       &:hover {
         color: #007bff;
@@ -74,10 +68,9 @@
     }
 
     &.open {
-      display: flex; /* Affiche le menu mobile */
+      display: flex; /* Affiche le menu mobile quand actif */
     }
   }
-
   @media (max-width: 990px) {
     flex-direction: column; /* Réorganise les éléments du navbar */
     align-items: center;

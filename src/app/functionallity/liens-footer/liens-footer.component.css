@@ -3,18 +3,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 50vh; /* Ajustez la hauteur pour que ce soit plus compact */
+  min-height: 50vh;
   text-align: center;
-  padding: 10px; /* Réduire le padding */
-  margin: 0; /* Supprimer les marges */
-}
+  padding: 10px;
 
-.liens-footer h1 {
-  font-size: 1.8rem; /* Réduire la taille du texte si nécessaire */
-  margin-bottom: 10px; /* Réduire l'espace sous le titre */
-}
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
 
-.liens-footer p {
-  font-size: 1rem; /* Taille de police normale pour le paragraphe */
-  margin: 0; /* Pas d'espace autour du texte */
+  p {
+    font-size: 1rem;
+    margin: 0;
+  }
 }

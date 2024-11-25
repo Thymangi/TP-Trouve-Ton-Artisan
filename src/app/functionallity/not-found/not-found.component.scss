@@ -4,23 +4,23 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 60vh; /* Ajustez la hauteur pour centrer verticalement */
-  margin-top: 20px; /* Si nécessaire, pour séparer légèrement du header */
-}
+  min-height: 60vh;
+  margin-top: 20px;
 
-.page-404 h1 {
-  font-size: 4rem;
-  margin: 0;
-}
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+  }
 
-.page-404 p {
-  font-size: 1.25rem;
-  color: #555;
-  margin: 10px 0;
-}
+  p {
+    font-size: 1.25rem;
+    color: #555;
+    margin: 10px 0;
+  }
 
-.page-404 img {
-  margin-top: 15px;
-  max-width: 100%;
-  height: auto;
+  img {
+    margin-top: 15px;
+    max-width: 100%;
+    height: auto;
+  }
 }

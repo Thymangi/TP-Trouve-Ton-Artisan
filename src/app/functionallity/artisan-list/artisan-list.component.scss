@@ -17,26 +17,24 @@
   border: 3px solid #0074c7;
   border-radius: 8px;
   width: 200px;
-  margin-bottom: 15px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease;
-}
 
-.artisan-card:hover {
-  transform: scale(1.05);
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .stars {
   font-size: 1.5rem;
-  color: gold;
-}
 
-.star {
-  margin-right: 2px;
-  color: lightgray; /* Couleur des étoiles non remplies */
-}
+  .star {
+    margin-right: 2px;
+    color: lightgray; // Étoiles non remplies
 
-.star.filled {
-  color: gold; /* Couleur des étoiles remplies */
+    &.filled {
+      color: gold; // Étoiles remplies
+    }
+  }
 }

@@ -10,7 +10,7 @@ app.use(express.static(distPath));
 
 // Configuration Nodemailer pour MailDev
 const transporter = nodemailer.createTransport({
-  host: "localhost", // MailDev fonctionne par défaut sur localhost
+  host: "127.0.0.1", // MailDev fonctionne par défaut sur localhost
   port: 1025, // Port par défaut de MailDev
   secure: false, // Pas de TLS
 });

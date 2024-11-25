@@ -6,7 +6,7 @@ import { SentMessageInfo } from 'nodemailer'; // Import type
 
 // Configuration Nodemailer
 const transporter = nodemailer.createTransport({
-  host: 'localhost',
+  host: '127.0.0.1',
   port: 1025,
   secure: false, // MailDev ne supporte pas SSL/TLS
 });

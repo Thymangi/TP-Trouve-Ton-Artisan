@@ -2,43 +2,38 @@ header {
   display: flex;
   align-items: center;
   background-color: white;
-  padding: 10px;
-  padding-bottom: 0px;
+  padding: 10px 10px 0;
 
-  .logo-container {
+  .logo-container,
+  .search-container,
+  .nav-container {
     flex: 1;
     max-width: 33.33%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 5px;
+  }
 
-    a {
-      display: inline-flex;
+  .logo-container a {
+    display: inline-flex;
 
-      .logo {
-        max-width: 300px; /* Augmente la taille maximale du logo */
-        height: auto;
+    .logo {
+      max-width: 300px;
+      height: auto;
 
-        @media (max-width: 758px) {
-          max-width: 300px; /* Taille réduite pour petit écran */
-        }
+      @media (max-width: 758px) {
+        max-width: 300px;
+      }
 
-        @media (max-width: 500px) {
-          max-width: 200px; /* Encore plus réduit pour les écrans très petits */
-        }
+      @media (max-width: 500px) {
+        max-width: 200px;
       }
     }
   }
 
   .search-container {
-    flex: 1;
-    max-width: 33.33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    margin: 5px;
 
     .search-input {
       width: 100%;
@@ -72,24 +67,14 @@ header {
     }
   }
 
-  .nav-container {
-    flex: 1;
-    max-width: 33.33%;
-    display: flex;
-    justify-content: center;
-    margin: 5px;
-  }
-
-  /* Responsive pour les écrans inférieurs à 990px */
+  /* Responsive pour les écrans inférieurs à 758px */
   @media (max-width: 758px) {
-    flex-direction: column; /* Les éléments se placent les uns sous les autres */
-    align-items: center;
+    flex-direction: column;
 
     .logo-container,
     .search-container,
     .nav-container {
-      max-width: 100%; /* Chaque section prend toute la largeur */
-      justify-content: center;
+      max-width: 100%;
     }
 
     .search-container {
