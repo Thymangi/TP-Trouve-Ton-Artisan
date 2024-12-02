@@ -9,8 +9,17 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { SeoService } from '../../architecture/service/seo.service.js';
 
+// Fonction de validation personnalisée pour le CAPTCHA
+function captchaValidator(control: AbstractControl): ValidationErrors | null {
+  const expectedCaptcha = '12345'; // Texte attendu pour le CAPTCHA
+  if (control.value !== expectedCaptcha) {
+    return { invalidCaptcha: true };
+  }
+  return null;
+}
 @Component({
   selector: 'app-artisan-detail',
   templateUrl: './artisan-detail.component.html',
@@ -23,6 +32,7 @@ export class ArtisanDetailComponent implements OnInit {
   contactForm!: FormGroup;
   emailStatus: 'success' | 'error' | null = null;
   emailMessage: string = '';
+  captchaText: string = ''; // Texte CAPTCHA généré dynamiquement
 
   constructor(
     private fb: FormBuilder,
@@ -53,11 +63,25 @@ export class ArtisanDetailComponent implements OnInit {
       );
     }
 
+    // Générer un CAPTCHA dynamique
+    this.captchaText = Math.random().toString(36).substring(2, 7);
+
     // Initialiser le formulaire de contact
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       subject: ['', [Validators.required, Validators.minLength(3)]],
       message: ['', [Validators.required, Validators.minLength(10)]],
+      captcha: [
+        '',
+        [
+          Validators.required,
+          (control: AbstractControl) => {
+            return control.value === this.captchaText
+              ? null
+              : { invalidCaptcha: true };
+          },
+        ],
+      ],
     });
   }
 
@@ -71,9 +95,10 @@ export class ArtisanDetailComponent implements OnInit {
         name: this.contactForm.value.name,
         subject: this.contactForm.value.subject,
         message: this.contactForm.value.message,
-        recipientEmail: this.artisan?.email, // Adresse e-mail de l'artisan
+        recipientEmail: this.artisan?.email,
       };
 
+      // Sécurité : Valider côté serveur aussi
       this.artisanService.sendEmail(formData).subscribe(
         () => {
           this.emailStatus = 'success';

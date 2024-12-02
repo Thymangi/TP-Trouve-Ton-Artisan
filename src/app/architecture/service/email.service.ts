@@ -16,6 +16,10 @@ export class EmailService {
     message: string;
     to?: string;
   }): Observable<any> {
-    return this.http.post<any>(this.apiUrl, emailData);
+    return this.http.post<any>(this.apiUrl, emailData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }

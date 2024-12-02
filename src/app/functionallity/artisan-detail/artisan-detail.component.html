@@ -23,7 +23,7 @@
 
   <!-- Formulaire de contact -->
   <h3>Contactez cet artisan</h3>
-  <form (ngSubmit)="sendContactForm()" [formGroup]="contactForm">
+  <form (ngSubmit)="sendContactForm()" [formGroup]="contactForm" novalidate>
     <div class="form-group">
       <label for="name">Nom</label>
       <input
@@ -32,7 +32,22 @@
         formControlName="name"
         class="form-control"
         placeholder="Votre nom"
+        autocomplete="off"
       />
+      <!-- Message d'erreur -->
+      <div
+        *ngIf="
+          contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+        "
+        class="error"
+      >
+        <p *ngIf="contactForm.get('name')?.errors?.['required']">
+          Le nom est requis.
+        </p>
+        <p *ngIf="contactForm.get('name')?.errors?.['minlength']">
+          Le nom doit contenir au moins 3 caractères.
+        </p>
+      </div>
     </div>
 
     <div class="form-group">
@@ -43,7 +58,23 @@
         formControlName="subject"
         class="form-control"
         placeholder="Objet du message"
+        autocomplete="off"
       />
+      <!-- Message d'erreur -->
+      <div
+        *ngIf="
+          contactForm.get('subject')?.invalid &&
+          contactForm.get('subject')?.touched
+        "
+        class="error"
+      >
+        <p *ngIf="contactForm.get('subject')?.errors?.['required']">
+          L'objet est requis.
+        </p>
+        <p *ngIf="contactForm.get('subject')?.errors?.['minlength']">
+          L'objet doit contenir au moins 3 caractères.
+        </p>
+      </div>
     </div>
 
     <div class="form-group">
@@ -54,7 +85,51 @@
         class="form-control"
         rows="5"
         placeholder="Votre message"
+        autocomplete="off"
       ></textarea>
+      <div
+        *ngIf="
+          contactForm.get('message')?.invalid &&
+          contactForm.get('message')?.touched
+        "
+        class="error"
+      >
+        <p *ngIf="contactForm.get('message')?.errors?.['required']">
+          Le message est requis.
+        </p>
+        <p *ngIf="contactForm.get('message')?.errors?.['minlength']">
+          Le message doit contenir au moins 10 caractères.
+        </p>
+      </div>
+    </div>
+
+    <!-- CAPTCHA pour bloquer les robots -->
+    <div class="form-group">
+      <label for="captcha">Captcha</label>
+      <p><strong>Code :</strong> {{ captchaText }}</p>
+      <input
+        type="text"
+        id="captcha"
+        formControlName="captcha"
+        class="form-control"
+        placeholder="Entrez le texte de vérification"
+        autocomplete="off"
+      />
+      <!-- Message d'erreur pour le CAPTCHA -->
+      <div
+        *ngIf="
+          contactForm.get('captcha')?.invalid &&
+          contactForm.get('captcha')?.touched
+        "
+        class="error"
+      >
+        <p *ngIf="contactForm.get('captcha')?.errors?.['invalidCaptcha']">
+          Le CAPTCHA est incorrect. Veuillez réessayer.
+        </p>
+        <p *ngIf="contactForm.get('captcha')?.errors?.['required']">
+          Le CAPTCHA est requis.
+        </p>
+      </div>
     </div>
 
     <button
@@ -64,6 +139,7 @@
     >
       Envoyer
     </button>
+
     <div
       *ngIf="emailStatus"
       class="alert"
